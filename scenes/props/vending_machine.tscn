@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://bxyidc0x0t2xy"]
 
 [ext_resource type="PackedScene" uid="uid://bdktuy5yspoxw" path="res://models/vending_machine.gltf" id="1_6oh5p"]
+[ext_resource type="Script" uid="uid://c5mlp6r4mts0r" path="res://addons/dialogue_manager/nodes/actionable/dialogue_actionable_3d.gd" id="2_wc3im"]
+[ext_resource type="Resource" uid="uid://tev3pplejwih" path="res://dialogues/vending_machine.dialogue" id="3_36pc1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wc3im"]
 size = Vector3(1, 1.7565613, 0.77124023)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36pc1"]
 
 [node name="VendingMachine" type="StaticBody3D" unique_id=745945868]
 collision_layer = 2
@@ -13,3 +17,13 @@ collision_layer = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1046708546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8784332, -0.11437988)
 shape = SubResource("BoxShape3D_wc3im")
+
+[node name="DialogueActionable3D" type="Area3D" parent="." unique_id=399239326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.7626033, 0, 0.498537, -0.048244357)
+script = ExtResource("2_wc3im")
+dialogue_resource = ExtResource("3_36pc1")
+dialogue_cue = "vending_machine"
+metadata/_custom_type_script = "uid://c5mlp6r4mts0r"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueActionable3D" unique_id=1465346632]
+shape = SubResource("BoxShape3D_36pc1")

@@ -13,14 +13,32 @@ const OPPOSITE: Array[int] = [Dir.UP, Dir.RIGHT, Dir.LEFT, Dir.DOWN]
 var _heading := 0
 var _steps := 0
 var _wait := 0.0
-
+var talking := false
 
 func _ready() -> void:
 	super()
 	_heading = facing
+	if Engine.is_editor_hint():
+		return
+	for child in get_children():
+		if child is DialogueActionable3D:
+			child.actioned.connect(_on_talked_to)
+	DialogueManager.dialogue_ended.connect(func(_r): talking = false)
 
+func _on_talked_to() -> void:
+	talking = true
+	var player := get_tree().get_first_node_in_group("player") as Node3D
+	if player:
+		var d := player.global_position - global_position
+		if absf(d.x) > absf(d.z):
+			facing = Dir.RIGHT if d.x > 0 else Dir.LEFT
+		else:
+			facing = Dir.DOWN if d.z > 0 else Dir.UP
 
 func _think(delta: float) -> void:
+	if talking:
+		return
+		
 	if not wander:
 		return
 	if _wait > 0.0:

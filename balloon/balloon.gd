@@ -70,8 +70,15 @@ var mutation_cooldown: Timer = Timer.new()
 ## Indicator to show that player can progress dialogue.
 @onready var progress: Polygon2D = %Progress
 
+## Portraits keyed by character name or by an [#portrait=xxx] tag value.
+@export var portraits: Dictionary[String, Texture2D] = {}
+
+@onready var portrait_frame: PanelContainer = %PortraitFrame
+@onready var portrait: TextureRect = %Portrait
+@onready var name_plate: PanelContainer = %NamePlate
 
 func _ready() -> void:
+	add_to_group("dialogue_balloon")
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
@@ -124,15 +131,22 @@ func start(with_dialogue_resource: DialogueResource = null, cue: String = "", ex
 
 ## Apply any changes to the balloon given a new [DialogueLine].
 func apply_dialogue_line() -> void:
+	name_plate.visible = not dialogue_line.character.is_empty()
+	character_label.text = tr(dialogue_line.character, "dialogue")
+
+	var portrait_key: String = dialogue_line.get_tag_value("portrait")
+	if portrait_key.is_empty():
+		portrait_key = dialogue_line.character
+	var portrait_texture: Texture2D = portraits.get(portrait_key)
+	portrait.texture = portrait_texture
+	portrait_frame.visible = portrait_texture != null
+
 	mutation_cooldown.stop()
 
 	progress.hide()
 	is_waiting_for_input = false
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
-
-	character_label.visible = not dialogue_line.character.is_empty()
-	character_label.text = tr(dialogue_line.character, "dialogue")
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
