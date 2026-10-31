@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dqwfnh0mwn02"]
+
+[resource]
+shading_mode = 2
+specular_mode = 2
+albedo_color = Color(0.7529412, 0.3529412, 0.15686275, 1)
+uv1_world_triplanar = true

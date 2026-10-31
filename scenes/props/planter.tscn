@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://du4tnhcqpr8q0"]
+
+[ext_resource type="Material" uid="uid://i6qw4vuafp7q" path="res://materials/planter.tres" id="1_herjr"]
+[ext_resource type="Material" uid="uid://c7wpf7r5o81l5" path="res://materials/soil.tres" id="2_fyn66"]
+[ext_resource type="PackedScene" uid="uid://da54xeyawoeio" path="res://scenes/props/tree.tscn" id="3_rj66e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cfbmc"]
+size = Vector3(1.6, 0.55, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_clm1r"]
+size = Vector2(1.4, 2.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4h2r"]
+size = Vector3(1.6, 0.55, 3)
+
+[node name="Planter" type="StaticBody3D" unique_id=279208155]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Box" type="MeshInstance3D" parent="." unique_id=964251947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+material_override = ExtResource("1_herjr")
+mesh = SubResource("BoxMesh_cfbmc")
+
+[node name="Soil" type="MeshInstance3D" parent="." unique_id=819411413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56, 0)
+material_override = ExtResource("2_fyn66")
+mesh = SubResource("PlaneMesh_clm1r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=994202246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+shape = SubResource("BoxShape3D_c4h2r")
+
+[node name="Tree" parent="." unique_id=1836882140 instance=ExtResource("3_rj66e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shaded = true

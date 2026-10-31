@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c7wpf7r5o81l5"]
+
+[ext_resource type="Texture2D" uid="uid://gastruxm4vmu" path="res://art/textures/soil.png" id="1_lqesl"]
+
+[resource]
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_lqesl")
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

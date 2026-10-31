@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://blk8rovv2sx2f"]
+
+[ext_resource type="Texture2D" uid="uid://cakivs5qv86g2" path="res://models/vending_machine_0.png" id="1_eugsw"]
+
+[resource]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_eugsw")
+texture_filter = 0
+texture_repeat = false

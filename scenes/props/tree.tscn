@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://da54xeyawoeio"]
+
+[ext_resource type="Texture2D" uid="uid://boo4ak5n8m6jv" path="res://art/sprites/tree.png" id="1_d888c"]
+
+[node name="Tree" type="Sprite3D" unique_id=1836882140]
+offset = Vector2(0, 32)
+pixel_size = 0.0625
+billboard = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_d888c")

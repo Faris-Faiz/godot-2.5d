@@ -1,0 +1,20 @@
+[gd_resource type="Environment" format=3 uid="uid://mu058mtolans"]
+
+[resource]
+background_mode = 1
+background_color = Color(0.078431375, 0.101960786, 0.2, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.16470589, 0.2, 0.33333334, 1)
+ambient_light_energy = 0.35
+glow_enabled = true
+glow_intensity = 0.8
+glow_bloom = 0.1
+glow_hdr_threshold = 0.8
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.078431375, 0.101960786, 0.2, 1)
+fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 30.0
+fog_depth_end = 110.0
+adjustment_enabled = true

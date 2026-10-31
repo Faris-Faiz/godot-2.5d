@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b776almi6xs0m"]
+
+[ext_resource type="Texture2D" uid="uid://c8upc3nmp55o" path="res://art/textures/cobblestone.png" id="1_xbfme"]
+
+[resource]
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_xbfme")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b5b3p5ij0l0yl"]
+
+[ext_resource type="PackedScene" uid="uid://bvordhpexp053" path="res://scenes/characters/character.tscn" id="1_76oj4"]
+[ext_resource type="Script" uid="uid://cah7yekdq1u7h" path="res://scripts/characters/player.gd" id="2_dyp2m"]
+[ext_resource type="SpriteFrames" uid="uid://bhy0iaha87wm0" path="res://art/characters/player_frames.tres" id="3_atpat"]
+
+[node name="Player" unique_id=713884024 instance=ExtResource("1_76oj4")]
+script = ExtResource("2_dyp2m")
+sprite_frames = ExtResource("3_atpat")
+
+[node name="Sprite" parent="." index="0" unique_id=1963847017]
+sprite_frames = ExtResource("3_atpat")
+animation = &"stand_down"
+frame_progress = 0.61096925

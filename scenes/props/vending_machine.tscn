@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bxyidc0x0t2xy"]
+
+[ext_resource type="PackedScene" uid="uid://bdktuy5yspoxw" path="res://models/vending_machine.gltf" id="1_6oh5p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc3im"]
+size = Vector3(1, 1.7565613, 0.77124023)
+
+[node name="VendingMachine" type="StaticBody3D" unique_id=745945868]
+collision_layer = 2
+
+[node name="blockbench_export" parent="." unique_id=1502124141 instance=ExtResource("1_6oh5p")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1046708546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8784332, -0.11437988)
+shape = SubResource("BoxShape3D_wc3im")

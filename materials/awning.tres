@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ounqqj0l7fa6"]
+
+[ext_resource type="Texture2D" uid="uid://o32w3kfv7dc1" path="res://art/textures/awning.png" id="1_lj2li"]
+
+[resource]
+cull_mode = 2
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_lj2li")
+uv1_scale = Vector3(8, 2.5, 1)
+uv1_world_triplanar = true
+texture_filter = 2

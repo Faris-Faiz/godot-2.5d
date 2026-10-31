@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://blvb8t6uw34mt"]
+
+[ext_resource type="PackedScene" uid="uid://bvordhpexp053" path="res://scenes/characters/character.tscn" id="1_tdf4y"]
+[ext_resource type="Script" uid="uid://b067cyrkamalm" path="res://scripts/characters/pedestrian.gd" id="2_rputn"]
+[ext_resource type="SpriteFrames" uid="uid://i3baux4ktykf" path="res://art/characters/suit_dark_frames.tres" id="3_aogag"]
+
+[node name="Pedestrian" unique_id=713884024 instance=ExtResource("1_tdf4y")]
+script = ExtResource("2_rputn")
+wander = true
+max_steps = 30
+pause_chance = 0.01
+sprite_frames = ExtResource("3_aogag")

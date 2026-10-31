@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bnxx7vae5jwmt"]
+
+[ext_resource type="Texture2D" uid="uid://fpqqwsqrprne" path="res://art/textures/shopfront_door.png" id="1"]
+
+[resource]
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1")
+uv1_world_triplanar = true
+texture_filter = 2

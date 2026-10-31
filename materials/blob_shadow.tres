@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://7xdw2l0goud6"]
+
+[ext_resource type="Texture2D" uid="uid://xsmh2lxlst8l" path="res://art/sprites/shadow.png" id="1_i8388"]
+
+[resource]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_i8388")
+texture_filter = 0

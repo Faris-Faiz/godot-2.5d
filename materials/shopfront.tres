@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://by64h6acjuw0c"]
+
+[ext_resource type="Texture2D" uid="uid://cee6nwk3sfdll" path="res://art/textures/shopfront.png" id="1_aysci"]
+
+[resource]
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_aysci")
+uv1_scale = Vector3(4, 1, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

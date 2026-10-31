@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dbvayysxrkghi"]
+
+[ext_resource type="Material" uid="uid://dtbe056613ff0" path="res://materials/metal_dark.tres" id="1_4qnpi"]
+[ext_resource type="Material" uid="uid://dqwfnh0mwn02" path="res://materials/lamp_pole.tres" id="2_5g4w5"]
+[ext_resource type="Material" uid="uid://3eusoybnf2rt" path="res://materials/lamp_head_on.tres" id="3_4qnpi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tyu53"]
+size = Vector3(0.5, 0.3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_clgs1"]
+size = Vector3(0.2, 3.4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sskfj"]
+size = Vector3(0.6, 0.5, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjlv5"]
+size = Vector3(0.5, 3.8, 0.5)
+
+[node name="StreetLamp" type="StaticBody3D" unique_id=1888842075]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Base" type="MeshInstance3D" parent="." unique_id=1794437248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+material_override = ExtResource("1_4qnpi")
+mesh = SubResource("BoxMesh_tyu53")
+
+[node name="Pole" type="MeshInstance3D" parent="." unique_id=985618634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+material_override = ExtResource("2_5g4w5")
+mesh = SubResource("BoxMesh_clgs1")
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1527888055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 3.555, 0)
+material_override = ExtResource("3_4qnpi")
+mesh = SubResource("BoxMesh_sskfj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=40901506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+shape = SubResource("BoxShape3D_tjlv5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1527021866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2971437, 3.5695302, 0)
+light_color = Color(1, 0.7529412, 0.4392157, 1)
+light_energy = 12.5
+omni_range = 4.0

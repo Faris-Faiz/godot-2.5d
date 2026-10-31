@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://3u6jren11unn"]
+
+[ext_resource type="Script" uid="uid://dqy0tem4jihfl" path="res://scripts/props/building.gd" id="1_26ah6"]
+[ext_resource type="Material" uid="uid://dneo3d6h6wdea" path="res://materials/stone_base.tres" id="1_oih6f"]
+[ext_resource type="Material" uid="uid://btr02ob18slgv" path="res://materials/cornice.tres" id="2_26ah6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_msdpk"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3l02u"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cgbkt"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_enjyw"]
+resource_local_to_scene = true
+
+[node name="Building" type="StaticBody3D" unique_id=144476255]
+collision_layer = 2
+script = ExtResource("1_26ah6")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=965847052]
+mesh = SubResource("BoxMesh_msdpk")
+
+[node name="Plinth" type="MeshInstance3D" parent="." unique_id=1766603013]
+material_override = ExtResource("1_oih6f")
+mesh = SubResource("BoxMesh_3l02u")
+
+[node name="Cornice" type="MeshInstance3D" parent="." unique_id=798081758]
+material_override = ExtResource("2_26ah6")
+mesh = SubResource("BoxMesh_cgbkt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1040085741]
+shape = SubResource("BoxShape3D_enjyw")

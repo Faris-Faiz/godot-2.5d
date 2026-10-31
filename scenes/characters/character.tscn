@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bvordhpexp053"]
+
+[ext_resource type="Script" uid="uid://ccflviymnlfd5" path="res://scripts/characters/overworld_character.gd" id="1_1bdar"]
+[ext_resource type="Material" uid="uid://7xdw2l0goud6" path="res://materials/blob_shadow.tres" id="1_x31xa"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bdar"]
+size = Vector2(0.9, 0.45)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x31xa"]
+radius = 0.3
+height = 1.0
+
+[node name="Character" type="CharacterBody3D" unique_id=713884024]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_1bdar")
+
+[node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1963847017]
+offset = Vector2(0, 12)
+pixel_size = 0.0625
+billboard = 1
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+
+[node name="Shadow" type="MeshInstance3D" parent="." unique_id=694615760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+visible = false
+material_override = ExtResource("1_x31xa")
+mesh = SubResource("PlaneMesh_1bdar")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=510381719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_x31xa")

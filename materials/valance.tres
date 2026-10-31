@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://boxa4wlt3yvqj"]
+
+[ext_resource type="Texture2D" uid="uid://bb3nljsrmrhkl" path="res://art/textures/valance.png" id="1_m3mm1"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("1_m3mm1")
+uv1_scale = Vector3(8, 1, 1)
+uv1_world_triplanar = true
+texture_filter = 2
