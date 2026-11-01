@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dbvayysxrkghi" path="res://scenes/props/street_lamp_on.tscn" id="10_2r55t"]
 [ext_resource type="PackedScene" uid="uid://b5b3p5ij0l0yl" path="res://scenes/characters/player.tscn" id="10_7hyoh"]
 [ext_resource type="Script" uid="uid://cql7i44ptfpe8" path="res://scripts/camera/follow_camera.gd" id="11_s4vxd"]
+[ext_resource type="PackedScene" uid="uid://bk8n2yiyjw3sv" path="res://scenes/props/trashbin.tscn" id="13_20dvn"]
 
 [node name="CasteliaStreet" type="Node3D" unique_id=1743191011]
 
@@ -97,3 +98,6 @@ fov = 36.0
 far = 200.0
 script = ExtResource("11_s4vxd")
 target = NodePath("../Characters/Player")
+
+[node name="Trashbin" parent="." unique_id=87103500 instance=ExtResource("13_20dvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.534811, 0.21448147, 8.662858)

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bk8n2yiyjw3sv"]
+
+[ext_resource type="PackedScene" uid="uid://bwa26w5c4aije" path="res://models/trashbin.gltf" id="1_521vw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b5pf6"]
+
+[node name="Trashbin" type="StaticBody3D" unique_id=87103500]
+collision_layer = 2
+
+[node name="blockbench_export" parent="." unique_id=1243906395 instance=ExtResource("1_521vw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=701513207]
+transform = Transform3D(0.65, 0, 0, 0, 0.9, 0, 0, 0, 0.65, 0, 0.45, -0.018)
+shape = SubResource("BoxShape3D_b5pf6")

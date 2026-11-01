@@ -7,13 +7,13 @@ Use this project through the local Funplay MCP for Godot editor server.
 - Endpoint: `http://127.0.0.1:8765/`
 - Active tool profile: `core`
 - Debug logging: `false`
-- Tool counts: `78` core, `128` full
+- Tool counts: `79` core, `129` full
 
 ## Project Context
 
 - Project name: `2.5D Project`
-- Main scene: ``
-- Project root: `C:/Users/User/Documents/Coding/Godot/2.5d-project/`
+- Main scene: `uid://ckyteoruc4o5b`
+- Project root: `/Users/kirm-luma/Documents/Godot Projects/godot-2.5d/`
 
 ## Operating Rules
 
