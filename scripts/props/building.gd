@@ -30,11 +30,11 @@ func _rebuild() -> void:
 	body.material_override = wall_material
 	# stone plinth and cornice stick out a little to break up the silhouette
 	var plinth: MeshInstance3D = $Plinth
-	(plinth.mesh as BoxMesh).size = Vector3(size.x, 0.75, size.z + 0.15)
-	plinth.position = Vector3(0, 0.375, 0.075)
+	(plinth.mesh as BoxMesh).size = Vector3(size.x + 0.3, 0.75, size.z + 0.3)
+	plinth.position = Vector3(0, 0.375, 0)
 	var cornice: MeshInstance3D = $Cornice
-	(cornice.mesh as BoxMesh).size = Vector3(size.x, 0.4, size.z + 0.3)
-	cornice.position = Vector3(0, size.y - 0.1, 0.15)
+	(cornice.mesh as BoxMesh).size = Vector3(size.x + 0.6, 0.4, size.z + 0.6)
+	cornice.position = Vector3(0, size.y - 0.1, 0)
 	var col: CollisionShape3D = $CollisionShape3D
 	(col.shape as BoxShape3D).size = size
 	col.position = body.position

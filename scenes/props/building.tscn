@@ -6,30 +6,38 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_msdpk"]
 resource_local_to_scene = true
+size = Vector3(11.855, 12, 16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3l02u"]
 resource_local_to_scene = true
+size = Vector3(12, 0.75, 16.25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cgbkt"]
 resource_local_to_scene = true
+size = Vector3(12, 0.4, 16.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_enjyw"]
 resource_local_to_scene = true
+size = Vector3(12, 12, 16)
 
 [node name="Building" type="StaticBody3D" unique_id=144476255]
 collision_layer = 2
 script = ExtResource("1_26ah6")
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=965847052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0.05257511)
 mesh = SubResource("BoxMesh_msdpk")
 
 [node name="Plinth" type="MeshInstance3D" parent="." unique_id=1766603013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0.018642142)
 material_override = ExtResource("1_oih6f")
 mesh = SubResource("BoxMesh_3l02u")
 
 [node name="Cornice" type="MeshInstance3D" parent="." unique_id=798081758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.9, 0.15)
 material_override = ExtResource("2_26ah6")
 mesh = SubResource("BoxMesh_cgbkt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1040085741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 shape = SubResource("BoxShape3D_enjyw")

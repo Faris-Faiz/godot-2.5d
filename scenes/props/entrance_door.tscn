@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://do76ep8djvk3t"]
+
+[ext_resource type="PackedScene" uid="uid://3ycefyas8m0x" path="res://models/entrance_door.gltf" id="1_2vkmk"]
+
+[sub_resource type="Curve" id="Curve_2vkmk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hyk2e"]
+curve = SubResource("Curve_2vkmk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gjncu"]
+lifetime_randomness = 0.3
+emission_shape_offset = Vector3(0, -0.7, 0)
+emission_shape = 3
+emission_box_extents = Vector3(0.45, 0.7, 0.45)
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 0.01
+initial_velocity_max = 0.03
+gravity = Vector3(0, 0, 0)
+damping_max = 0.05
+scale_min = 0.5
+color = Color(1, 0.8509804, 0.6, 1)
+alpha_curve = SubResource("CurveTexture_hyk2e")
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 2.5
+turbulence_noise_speed = Vector3(0.2, 0.1, 0.2)
+turbulence_noise_speed_random = 0.3
+turbulence_influence_min = 0.5
+turbulence_influence_max = 0.90000004
+
+[sub_resource type="Gradient" id="Gradient_hiacn"]
+colors = PackedColorArray(1, 0.9137255, 0.76862746, 1, 1, 0.9137255, 0.76862746, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fqeip"]
+gradient = SubResource("Gradient_hiacn")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4lga"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_fqeip")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_si3oh"]
+material = SubResource("StandardMaterial3D_y4lga")
+size = Vector2(0.07, 0.07)
+
+[node name="EntranceDoor" type="Node3D" unique_id=892764081]
+
+[node name="door" parent="." unique_id=1146504561 instance=ExtResource("1_2vkmk")]
+
+[node name="light_top_left" type="OmniLight3D" parent="door" unique_id=34331031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14031558, 1.3542947, -0.08395326)
+light_color = Color(1, 0.7529412, 0.4392157, 1)
+light_energy = 0.5
+omni_range = 1.5
+
+[node name="light_top_right" type="OmniLight3D" parent="door" unique_id=1896446815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15255651, 1.3542947, -0.08395326)
+light_color = Color(1, 0.7529412, 0.4392157, 1)
+light_energy = 0.5
+omni_range = 1.5
+
+[node name="light_bottom_right" type="OmniLight3D" parent="door" unique_id=1452961555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15255651, 1.144352, -0.08395326)
+light_color = Color(1, 0.7529412, 0.4392157, 1)
+light_energy = 0.5
+omni_range = 1.5
+
+[node name="light_bottom_left" type="OmniLight3D" parent="door" unique_id=1450998264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15049818, 1.144352, -0.08395326)
+light_color = Color(1, 0.7529412, 0.4392157, 1)
+light_energy = 0.5
+omni_range = 1.5
+
+[node name="SpotLight3D" type="SpotLight3D" parent="door" unique_id=87613568]
+transform = Transform3D(1, 0, 0, 0, 0.8870108, 0.4617486, 0, -0.4617486, 0.8870108, 0, 1.2801716, -0.118190646)
+light_color = Color(1, 0.7529412, 0.4392157, 1)
+light_energy = 2.14
+spot_range = 4.07
+spot_angle = 38.1
+
+[node name="LightMotes" type="GPUParticles3D" parent="door" unique_id=610567001]
+transform = Transform3D(0.58, 0, 0, 0, 0.3610585, -0.4539127, 0, 0.4539127, 0.3610585, -0.15, 1.3048797, -0.084291816)
+cast_shadow = 0
+amount = 14
+lifetime = 6.0
+preprocess = 6.0
+randomness = 0.3
+fixed_fps = 15
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gjncu")
+draw_pass_1 = SubResource("QuadMesh_si3oh")
+
+[editable path="door"]

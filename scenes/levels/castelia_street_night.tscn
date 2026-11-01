@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3u6jren11unn" path="res://scenes/props/building.tscn" id="3_20dvn"]
 [ext_resource type="Material" uid="uid://bk61dxb7ci7k" path="res://materials/wall_purple.tres" id="4_p06w2"]
 [ext_resource type="PackedScene" uid="uid://c4unrvtbopb3i" path="res://scenes/props/shop.tscn" id="5_i0ffv"]
+[ext_resource type="PackedScene" uid="uid://do76ep8djvk3t" path="res://scenes/props/entrance_door.tscn" id="5_ukfb6"]
 [ext_resource type="PackedScene" uid="uid://dnyf34k1ccuaq" path="res://scenes/props/street_lamp.tscn" id="6_sh28r"]
 [ext_resource type="Resource" uid="uid://d3x5vw1aw84ao" path="res://dialogues/shop_sign.dialogue" id="7_sh28r"]
 [ext_resource type="PackedScene" uid="uid://du4tnhcqpr8q0" path="res://scenes/props/planter.tscn" id="7_ukfb6"]
@@ -14,8 +15,92 @@
 [ext_resource type="PackedScene" uid="uid://b5b3p5ij0l0yl" path="res://scenes/characters/player.tscn" id="10_7hyoh"]
 [ext_resource type="Script" uid="uid://cql7i44ptfpe8" path="res://scripts/camera/follow_camera.gd" id="11_s4vxd"]
 [ext_resource type="PackedScene" uid="uid://blvb8t6uw34mt" path="res://scenes/characters/pedestrian.tscn" id="12_20dvn"]
-[ext_resource type="Script" uid="uid://c5mlp6r4mts0r" path="res://addons/dialogue_manager/nodes/actionable/dialogue_actionable_3d.gd" id="13_p06w2"]
 [ext_resource type="Resource" uid="uid://lhr5vehmcnh6" path="res://dialogues/pedestrian1.dialogue" id="14_i0ffv"]
+
+[sub_resource type="GDScript" id="GDScript_sh28r"]
+script/source = "@tool
+
+@icon(\"uid://dppsuhlvbcbjc\")
+
+## A special [Area3D] node to hold information about starting dialogue.
+##
+## Assuming [code]dialogue_resource[/code] and [code]cue[/code] have been configured you can
+## call [code]action()[/code] on this node at runtime to start dialogue.
+class_name DialogueActionable3D extends Area3D
+
+
+## Emitted when this [DialogueActionable3D] has [code]action()[/code] called on it.
+signal actioned()
+
+## Emitted when the [DialogueResource] associated with this [DialogueActionable2D] ends. [b]NOTE:[/b] The
+## signal is also emitted if the same resource is used for multiple [DialogueActionable2D] nodes in the tree.
+signal dialogue_ended()
+
+
+## The [DialogueResource] to use when starting dialogue.
+@export var dialogue_resource: DialogueResource = null:
+	set(value):
+		dialogue_resource = value
+		if dialogue_resource == null:
+			dialogue_cue = \"\"
+		notify_property_list_changed()
+	get:
+		return dialogue_resource
+
+## The target cue to start dialogue from.
+@export var dialogue_cue: String = \"\"
+
+## The dialogue balloon that was last used by calling [code]action()[/code] (if there was one).
+var dialogue_balloon: Node
+
+## The method used to start dialogue action [code]action()[/code] is called. Override if you need different logic.
+static var start_dialogue: Callable = func(with_dialogue_resource: DialogueResource, from_cue: String, extra_game_states: Array) -> Node:
+	return Engine.get_singleton(\"DialogueManager\").show_dialogue_balloon(with_dialogue_resource, from_cue, extra_game_states)
+
+
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		add_to_group(\"dialogue_actionables\")
+		Engine.get_singleton(\"DialogueManager\").dialogue_ended.connect(_on_dialogue_ended)
+
+
+#region Public
+
+
+## Action this [DialogueActionable3D]. If a [DialogueResource] and cue have been set on this node then
+## it will start dialogue.
+func action() -> void:
+	if is_instance_valid(dialogue_resource) and not dialogue_cue.is_empty():
+		dialogue_balloon = start_dialogue.call(dialogue_resource, dialogue_cue, [{ actionable = self }, owner])
+	actioned.emit()
+
+
+## Find the nearest [DialogueActionable3D] to a given position.
+static func get_nearest_actionable_to(target_position: Vector3) -> DialogueActionable3D:
+	var nearest_distance: float = INF
+	var nearest_actionable: DialogueActionable3D = null
+	var actionables: Array[Node] = (Engine.get_main_loop() as SceneTree).get_nodes_in_group(\"dialogue_actionables\")
+	for actionable: DialogueActionable3D in actionables:
+		var distance: float = actionable.global_position.distance_squared_to(target_position)
+		if distance < nearest_distance:
+			nearest_distance = distance
+			nearest_actionable = actionable
+
+	return nearest_actionable
+
+
+#endregion
+
+#region Signals
+
+
+func _on_dialogue_ended(ending_dialogue_resource: DialogueResource) -> void:
+	if ending_dialogue_resource == dialogue_resource:
+		dialogue_ended.emit()
+
+
+#endregion
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i0ffv"]
 size = Vector3(0.855, 0.805, 0.17)
@@ -66,6 +151,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16,
 size = Vector3(14, 15, 16)
 wall_material = ExtResource("4_p06w2")
 
+[node name="EntranceWing" parent="Buildings" unique_id=1438384080 instance=ExtResource("3_20dvn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.676567, 0, 16.297338)
+size = Vector3(2.75, 15, 7)
+wall_material = ExtResource("4_p06w2")
+
+[node name="Doors" type="Node3D" parent="." unique_id=2133683080]
+
+[node name="EntranceDoor" parent="Doors" unique_id=892764081 instance=ExtResource("5_ukfb6")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.5291634, 0.12970233, 19.994331)
+
 [node name="Props" type="Node3D" parent="." unique_id=386156150]
 
 [node name="Shop" parent="Props" unique_id=856114323 instance=ExtResource("5_i0ffv")]
@@ -75,7 +170,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0000005, 0.55505335, 2.7126613)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("13_p06w2")
+script = SubResource("GDScript_sh28r")
 dialogue_resource = ExtResource("7_sh28r")
 dialogue_cue = "shop_sign"
 metadata/_custom_type_script = "uid://c5mlp6r4mts0r"
@@ -130,14 +225,14 @@ facing = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 6.5)
 wander = false
 short_wander = true
-short_steps = null
+short_steps = 2
 short_pause = 5.0
 
 [node name="DialogueActionable3D" type="Area3D" parent="Characters/Pedestrians/Pedestrian1" unique_id=1248804913]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74318576, 0)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("13_p06w2")
+script = SubResource("GDScript_sh28r")
 dialogue_resource = ExtResource("14_i0ffv")
 dialogue_cue = "salaryman"
 metadata/_custom_type_script = "uid://c5mlp6r4mts0r"
