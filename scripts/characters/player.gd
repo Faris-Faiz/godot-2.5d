@@ -7,6 +7,7 @@ extends OverworldCharacter
 const TURN_DELAY := 0.08
 
 var _turn_timer := 0.0
+var input_locked := false
 
 ## How close (in tiles) an actionable must be to the faced tile's centre.
 const INTERACT_TOLERANCE := 0.6	
@@ -14,7 +15,7 @@ const INTERACT_TOLERANCE := 0.6
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("interact"):
 		return
-	if moving or _is_dialogue_open():
+	if moving or input_locked or _is_dialogue_open():
 		return
 	var actionable := _actionable_in_front()
 	if actionable:
@@ -41,7 +42,7 @@ func _is_dialogue_open() -> bool:
 	return balloon != null and balloon.visible
 
 func _think(delta: float) -> void:
-	if _is_dialogue_open():
+	if input_locked or _is_dialogue_open():
 		return
 	speed = run_speed if Input.is_action_pressed("run") else walk_speed
 	var dir := _input_dir()

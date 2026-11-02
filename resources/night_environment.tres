@@ -1,6 +1,6 @@
 [gd_resource type="Environment" format=3 uid="uid://mu058mtolans"]
 
-[ext_resource type="Shader" uid="uid://bbd1viwfnq32m" path="res://scenes/levels/castelia_street_night.gdshader" id="1_p5kfr"]
+[ext_resource type="Shader" path="res://scenes/levels/castelia_street_night.gdshader" id="1_p5kfr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_evbxq"]
 shader = ExtResource("1_p5kfr")

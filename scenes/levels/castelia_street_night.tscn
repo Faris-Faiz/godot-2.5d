@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://3u6jren11unn" path="res://scenes/props/building.tscn" id="3_20dvn"]
 [ext_resource type="Material" uid="uid://bk61dxb7ci7k" path="res://materials/wall_purple.tres" id="4_p06w2"]
 [ext_resource type="PackedScene" uid="uid://c4unrvtbopb3i" path="res://scenes/props/shop.tscn" id="5_i0ffv"]
-[ext_resource type="PackedScene" uid="uid://do76ep8djvk3t" path="res://scenes/props/entrance_door.tscn" id="5_ukfb6"]
+[ext_resource type="PackedScene" uid="uid://cw88rel4qyvgo" path="res://scenes/props/entrance_door.tscn" id="5_ukfb6"]
 [ext_resource type="PackedScene" uid="uid://dnyf34k1ccuaq" path="res://scenes/props/street_lamp.tscn" id="6_sh28r"]
 [ext_resource type="Resource" uid="uid://d3x5vw1aw84ao" path="res://dialogues/shop_sign.dialogue" id="7_sh28r"]
 [ext_resource type="PackedScene" uid="uid://du4tnhcqpr8q0" path="res://scenes/props/planter.tscn" id="7_ukfb6"]
@@ -160,6 +160,8 @@ wall_material = ExtResource("4_p06w2")
 
 [node name="EntranceDoor" parent="Doors" unique_id=892764081 instance=ExtResource("5_ukfb6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.5291634, 0.12970233, 19.994331)
+door_id = &"street_door"
+target_door_id = &"interior_door"
 
 [node name="Props" type="Node3D" parent="." unique_id=386156150]
 

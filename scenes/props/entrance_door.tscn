@@ -1,6 +1,8 @@
-[gd_scene format=3 uid="uid://do76ep8djvk3t"]
+[gd_scene format=3 uid="uid://cw88rel4qyvgo"]
 
 [ext_resource type="PackedScene" uid="uid://3ycefyas8m0x" path="res://models/entrance_door.gltf" id="1_2vkmk"]
+[ext_resource type="Script" uid="uid://blcw5jl15fjco" path="res://scripts/props/entrance_door.gd" id="1_gjncu"]
+[ext_resource type="Script" uid="uid://c5mlp6r4mts0r" path="res://addons/dialogue_manager/nodes/actionable/dialogue_actionable_3d.gd" id="2_hyk2e"]
 
 [sub_resource type="Curve" id="Curve_2vkmk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -57,7 +59,11 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_y4lga")
 size = Vector2(0.07, 0.07)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gjncu"]
+size = Vector3(1.05, 1.79, 0.35)
+
 [node name="EntranceDoor" type="Node3D" unique_id=892764081]
+script = ExtResource("1_gjncu")
 
 [node name="door" parent="." unique_id=1146504561 instance=ExtResource("1_2vkmk")]
 
@@ -103,5 +109,18 @@ fixed_fps = 15
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_gjncu")
 draw_pass_1 = SubResource("QuadMesh_si3oh")
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=1612640535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="DialogueActionable3D" type="Area3D" parent="." unique_id=452758612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_hyk2e")
+metadata/_custom_type_script = "uid://c5mlp6r4mts0r"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DialogueActionable3D" unique_id=1121783323]
+shape = SubResource("BoxShape3D_gjncu")
 
 [editable path="door"]
