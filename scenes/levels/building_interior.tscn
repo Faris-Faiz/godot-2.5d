@@ -2,6 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://bqeu5h5sl5yal" path="res://tiles/tile_source.tres" id="1_ten1m"]
 [ext_resource type="Material" uid="uid://fmykaw4v57xi" path="res://materials/wall_beige.tres" id="2_o0gty"]
+[ext_resource type="PackedScene" uid="uid://cw88rel4qyvgo" path="res://scenes/props/entrance_door.tscn" id="3_3l3hg"]
 [ext_resource type="Script" uid="uid://cql7i44ptfpe8" path="res://scripts/camera/follow_camera.gd" id="3_367r3"]
 [ext_resource type="PackedScene" uid="uid://b5b3p5ij0l0yl" path="res://scenes/characters/player.tscn" id="3_sdyyc"]
 
@@ -11,7 +12,7 @@ size = Vector3(0.21, 4, 6)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o0gty"]
 material = ExtResource("2_o0gty")
-size = Vector3(0.21, 4, 6.42)
+size = Vector3(0.21, 4, 7.385)
 
 [node name="BuildingInterior" type="Node3D" unique_id=1579587564]
 
@@ -21,7 +22,7 @@ size = Vector3(0.21, 4, 6.42)
 mesh_library = ExtResource("1_ten1m")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(65535, 65534, 1, 65535, 65535, 1, 65535, 0, 1, 65535, 65533, 1, 65535, 1, 1, 65535, 2, 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 65533, 1, 1, 65533, 1, 1, 65534, 1, 1, 65535, 1, 1, 0, 1, 1, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65535, 1, 2, 65534, 1, 2, 65533, 1, 65534, 65533, 1, 65533, 65533, 1, 65533, 65534, 1, 65533, 65535, 1, 65533, 0, 1, 65533, 1, 1, 65533, 2, 1, 65534, 2, 1, 65534, 1, 1, 65534, 0, 1, 65534, 65535, 1, 65534, 65534, 1)
+"cells": PackedInt32Array(65535, 65534, 1, 65535, 65535, 1, 65535, 0, 1, 65535, 65533, 1, 65535, 1, 1, 65535, 2, 1, 0, 2, 1, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 65533, 1, 1, 65533, 1, 1, 65534, 1, 1, 65535, 1, 1, 0, 1, 1, 1, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65535, 1, 2, 65534, 1, 2, 65533, 1, 65534, 65533, 1, 65533, 65533, 1, 65533, 65534, 1, 65533, 65535, 1, 65533, 0, 1, 65533, 1, 1, 65533, 2, 1, 65534, 2, 1, 65534, 1, 1, 65534, 0, 1, 65534, 65535, 1, 65534, 65534, 1, 3, 2, 1, 3, 1, 1, 3, 0, 1, 3, 65535, 1, 3, 65534, 1, 3, 65533, 1)
 }
 
 [node name="Walls" type="StaticBody3D" parent="." unique_id=847171976]
@@ -31,21 +32,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.103735, 2.6319323, 0)
 mesh = SubResource("BoxMesh_ten1m")
 
 [node name="WallRight" type="MeshInstance3D" parent="Walls" unique_id=639150316]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1074653, 2.6270878, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1074653, 2.6270878, 0)
 mesh = SubResource("BoxMesh_ten1m")
 
 [node name="WallTop" type="MeshInstance3D" parent="Walls" unique_id=2092905895]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.6490068, -3.1093261)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.5, 2.6490068, -3.1093261)
 mesh = SubResource("BoxMesh_o0gty")
 
+[node name="EntranceDoor" parent="." unique_id=892764081 instance=ExtResource("3_3l3hg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.46642095, 0.6254025, -2.904524)
+door_id = &"interior_door"
+target_scene = "uid://dqmoyoibtkk76"
+target_door_id = &"street_door"
+
 [node name="CeilingLight" type="OmniLight3D" parent="." unique_id=1817501130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4053297, 0)
-light_color = Color(1, 0.7529412, 0.4392157, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5858088, 0)
+visible = false
 light_energy = 2.0
 omni_range = 9.0
 
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1135793208]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.49717999, 4.2391167, 0)
+light_energy = 9.05
+light_size = 2.61
+shadow_enabled = true
+
 [node name="Camera" type="Camera3D" parent="." unique_id=1653125118 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.196022, 1.8307035)
+transform = Transform3D(1, 0, 0, 0, 0.9459459, 0.3243243, 0, -0.3243243, 0.9459459, 0, 6, 10.5)
 fov = 35.0
 script = ExtResource("3_367r3")
 target = NodePath("../Player")
